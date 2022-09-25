@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { validateEmail } from '../../utils/validation';
 import styled from 'styled-components';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
@@ -18,15 +19,9 @@ const Register = () => {
     confirmPassword: '',
   });
 
-  const validateEmail = (email: string) => {
-    const checkEmail =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return checkEmail.test(email);
-  };
-
   const isNameValid = account.name.length >= 2;
   const isEmailValid = validateEmail(account.email);
-  const isPasswordValid = account.password.length > 4;
+  const isPasswordValid = account.password.length >= 4;
   const isPasswordSame = account.password == account.confirmPassword;
 
   const isButtonActive = isEmailValid && isPasswordValid && isPasswordSame;
