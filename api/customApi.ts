@@ -1,8 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
 const backendPortNumber = '5001';
-const serverUrl =
-  'http://' + window.location.hostname + ':' + backendPortNumber + '/';
+const serverUrl = 'http://' + 'localhost' + ':' + backendPortNumber + '/';
 
 export const Axios: AxiosInstance = axios.create({
   baseURL: `${serverUrl}`,

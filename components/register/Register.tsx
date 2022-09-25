@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { validateEmail } from '../../utils/validation';
 import styled from 'styled-components';
+import { Axios } from '../../api/customApi';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
+import SnackBar from '../atoms/SnackBar';
+import { AxiosError } from 'axios';
 
 interface AccountTypes {
   email: string;
@@ -35,7 +38,15 @@ const Register = () => {
   };
 
   const onClickSubmit = async () => {
-    console.log('submit');
+    try {
+      await Axios.post('user/register', {
+        email: account.email,
+        password: account.password,
+        name: account.name,
+      });
+    } catch (err) {
+      SnackBar(err.error, 'error');
+    }
   };
 
   return (
