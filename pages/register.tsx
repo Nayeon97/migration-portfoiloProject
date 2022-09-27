@@ -1,6 +1,7 @@
+import { NextPage } from 'next';
 import Register from '../components/register/Register';
 
-const register = () => {
+const register: NextPage = () => {
   return <Register />;
 };
 

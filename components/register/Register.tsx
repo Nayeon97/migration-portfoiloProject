@@ -2,17 +2,10 @@ import React, { useState } from 'react';
 import { validateEmail } from '../../utils/validation';
 import styled from 'styled-components';
 import { Axios } from '../../api/customApi';
+import { AccountTypes } from '../../types';
 import Button from '../atoms/Button';
 import Input from '../atoms/Input';
 import SnackBar from '../atoms/SnackBar';
-import { AxiosError } from 'axios';
-
-interface AccountTypes {
-  email: string;
-  password: string;
-  name: string;
-  confirmPassword: string;
-}
 
 const Register = () => {
   const [account, setAccount] = useState<AccountTypes>({
