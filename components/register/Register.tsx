@@ -3,9 +3,9 @@ import { validateEmail } from '../../utils/validation';
 import styled from 'styled-components';
 import { Axios } from '../../api/customApi';
 import { AccountTypes } from '../../types';
-import Button from '../atoms/Button';
-import Input from '../atoms/Input';
-import SnackBar from '../atoms/SnackBar';
+import Button from '../common/Button';
+import Input from '../common/Input';
+import SnackBar from '../common/SnackBar';
 
 const Register = () => {
   const [account, setAccount] = useState<AccountTypes>({

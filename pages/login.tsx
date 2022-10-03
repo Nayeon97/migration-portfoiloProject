@@ -5,4 +5,4 @@ import withAuth from './withAuth';
 const login: NextPage = () => {
   return <Login />;
 };
-export default withAuth(login);
+export default login;
