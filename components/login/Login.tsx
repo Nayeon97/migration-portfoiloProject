@@ -6,7 +6,6 @@ import Input from '../common/Input';
 import Button from '../common/Button';
 import SnackBar from '../common/SnackBar';
 import styled from 'styled-components';
-import Card from '../common/Card';
 
 const Login = () => {
   const [account, setAccount] = useState<AccountTypes>({
@@ -43,7 +42,6 @@ const Login = () => {
   return (
     <RegisterContainer>
       <div>이메일</div>
-      <Card />
       <Input
         name="email"
         value={account.email}

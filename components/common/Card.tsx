@@ -11,8 +11,9 @@ const Card = ({ children }: CardProps) => {
 export default Card;
 
 const CardWrapper = styled.div`
-  width: 250px;
-  height: 350px;
+  width: 200px;
+  height: 300px;
   background-color: pink;
   border-radius: 10px;
+  margin-bottom: 10px;
 `;
