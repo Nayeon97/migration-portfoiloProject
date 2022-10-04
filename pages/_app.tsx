@@ -3,8 +3,12 @@ import React, { useState } from 'react';
 import { GlobalStyle } from '../styles/global-style';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import Nav from '../components/common/Nav';
 
 function MyApp({ Component, pageProps }: AppProps) {
