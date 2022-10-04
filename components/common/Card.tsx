@@ -11,9 +11,10 @@ const Card = ({ children }: CardProps) => {
 export default Card;
 
 const CardWrapper = styled.div`
-  width: 200px;
-  height: 300px;
-  background-color: pink;
+  width: 300px;
+  height: 100px;
+  background-color: #f1f3f5;
   border-radius: 10px;
   margin-bottom: 10px;
+  text-align: center;
 `;

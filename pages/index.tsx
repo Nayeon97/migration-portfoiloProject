@@ -7,6 +7,7 @@ interface UserInfo {
   _id: string;
   id: string;
   name: string;
+  email: string;
   password: string;
   description: string;
   visited: number;
@@ -24,7 +25,10 @@ const Home: NextPage = ({ users }: UsersInfo) => {
     <HomeContainer>
       {users?.map((user, index) => (
         <Card key={index}>
-          <p>{user.id}</p>
+          <div>
+            <NameWrapper>🦁 {user.name}</NameWrapper>
+            <EmailWrapper>{user.email}</EmailWrapper>
+          </div>
         </Card>
       ))}
     </HomeContainer>
@@ -48,4 +52,18 @@ const HomeContainer = styled.div`
   grid-template-columns: repeat(3, 1fr);
   place-items: center;
   margin-top: 20px;
+
+  div {
+    margin-top: 20px;
+  }
+`;
+
+const NameWrapper = styled.p`
+  color: #4dabf7;
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+const EmailWrapper = styled.p`
+  color: #495057;
 `;

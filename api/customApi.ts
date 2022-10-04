@@ -12,11 +12,13 @@ export const Axios: AxiosInstance = axios.create({
 });
 
 Axios.interceptors.request.use(async (config) => {
-  const accessToken = sessionStorage.getItem('userToken');
-  if (config && accessToken) {
-    config.headers = {
-      Authorization: `Bearer ${accessToken}`,
-    };
+  if (typeof window !== 'undefined') {
+    const accessToken = sessionStorage.getItem('userToken');
+    if (config && accessToken) {
+      config.headers = {
+        Authorization: `Bearer ${accessToken}`,
+      };
+    }
   }
   return config;
 });
@@ -26,6 +28,6 @@ Axios.interceptors.response.use(
     return response;
   },
   function (error) {
-    return Promise.reject(error.response.data);
+    return Promise.reject(error);
   }
 );
