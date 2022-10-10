@@ -1,6 +1,7 @@
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
 import type { GetStaticProps, NextPage } from 'next';
 import styled from 'styled-components';
-import { Axios } from '../api/customApi';
+import { getProtfoiloList } from '../api/portfolioApi';
 import Card from '../components/common/Card';
 
 interface UserInfo {
@@ -20,10 +21,12 @@ interface UsersInfo {
   users: UserInfo[];
 }
 
-const Home: NextPage = ({ users }: UsersInfo) => {
+const Home: NextPage = () => {
+  const { data } = useQuery(['portfolioList'], getProtfoiloList);
+
   return (
     <HomeContainer>
-      {users?.map((user, index) => (
+      {data?.map((user, index) => (
         <Card key={index}>
           <div>
             <NameWrapper>🦁 {user.name}</NameWrapper>
@@ -38,11 +41,12 @@ const Home: NextPage = ({ users }: UsersInfo) => {
 export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const res = await Axios.get('/userlist');
-  const users = await res.data;
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(['portfoiloList'], getProtfoiloList);
+
   return {
     props: {
-      users,
+      dehydratedState: dehydrate(queryClient),
     },
   };
 };
@@ -55,6 +59,7 @@ const HomeContainer = styled.div`
 
   div {
     margin-top: 20px;
+    cursor: pointer;
   }
 `;
 
