@@ -1,5 +1,6 @@
 import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query';
 import type { GetStaticProps, NextPage } from 'next';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { getProtfoiloList } from '../api/portfolioApi';
 import Card from '../components/common/Card';
@@ -28,10 +29,12 @@ const Home: NextPage = () => {
     <HomeContainer>
       {data?.map((user, index) => (
         <Card key={index}>
-          <div>
-            <NameWrapper>🦁 {user.name}</NameWrapper>
-            <EmailWrapper>{user.email}</EmailWrapper>
-          </div>
+          <Link href={`/posts/${user.id}`}>
+            <div>
+              <NameWrapper>🦁 {user.name}</NameWrapper>
+              <EmailWrapper>{user.email}</EmailWrapper>
+            </div>
+          </Link>
         </Card>
       ))}
     </HomeContainer>
@@ -42,7 +45,10 @@ export default Home;
 
 export const getStaticProps: GetStaticProps = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(['portfoiloList'], getProtfoiloList);
+  await queryClient.prefetchQuery<UsersInfo>(
+    ['portfolioList'],
+    getProtfoiloList
+  );
 
   return {
     props: {

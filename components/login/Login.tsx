@@ -6,8 +6,10 @@ import Input from '../common/Input';
 import Button from '../common/Button';
 import SnackBar from '../common/SnackBar';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
 const Login = () => {
+  const router = useRouter();
   const [account, setAccount] = useState<AccountTypes>({
     email: '',
     password: '',
@@ -34,6 +36,7 @@ const Login = () => {
       const user = res.data;
       const accessToken = user.token;
       sessionStorage.setItem('userToken', accessToken);
+      router.push('/');
     } catch (err) {
       SnackBar(err.error, 'error');
     }
